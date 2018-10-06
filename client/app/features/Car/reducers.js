@@ -1,8 +1,10 @@
 import * as consts from './constants';
 
 const initialState = {
-  carofweek: null,
-  list: [],
+  carofweek: {}, // detail of car of the week
+  makes: [], // car makes data
+  list: [], // list of cars under specific makes
+  detail: {}, // car details for specific make and model,
   error: '',
 };
 
@@ -15,18 +17,21 @@ export default function CarReducer(state = initialState, action) {
         ...cloneObj.carofweek,
         review: action.payload.data.carofweek.review,
       };
-      console.log('CAR_OF_WEEK_LOAD_FULFILLED', cloneObj);
       break;
     case consts.CAR_LOAD_FULFILLED:
       cloneObj.carofweek = {
         ...cloneObj.carofweek,
         ...action.payload.data.car[0],
       };
-      console.log('CAR_LOAD_FULFILLED', cloneObj);
+      break;
+    case consts.CAR_MAKES_LOAD_FULFILLED:
+      cloneObj.makes = action.payload.data.makes;
+      break;
+    case consts.CAR_LIST_BY_MAKES_LOAD_FULFILLED:
+      cloneObj.list = action.payload.data.car;
       break;
     case consts.IS_ERROR:
-      cloneObj.list = [];
-      cloneObj.error = action.response;
+      // todo - error handling
       break;
     default:
       break;

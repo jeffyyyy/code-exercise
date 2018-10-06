@@ -8,4 +8,4 @@
 {"_id":320,"id":320,"makeId":30,"name":"3","price":150000,"imageUrl":"http://www.bmw.com.au/content/dam/bmw/common/all-models/3-series/sedan/2015/at-a-glance/3-series-sedan-design.jpg/jcr:content/renditions/cq5dam.resized.img.585.low.time1447942773188.jpg"}
 {"_id":400,"id":400,"makeId":40,"name":"S5","price":165000,"imageUrl":"http://media.caranddriver.com/images/media/267365/2008-audi-s5-photo-105022-s-450x274.jpg"}
 {"_id":510,"id":510,"makeId":50,"name":"TT","price":40000,"imageUrl":"http://media.caranddriver.com/images/media/3124/2007-nissan-350z-photo-3786-s-429x262.jpg"}
-{"_id":520,"id":520,"makeId":50,"name":"MX-5","price":90000,"imageUrl":"http://www.mazda.com.au/assets/cars/allnewmx5/overview/standard-feature-panel/overview-roadster-gt.jpg"}
+{"_id":520,"id":520,"makeId":50,"name":"MX-5","price":90000,"imageUrl":"https://www.mazda.com.au/globalassets/settings/vehicle-assets/mx-5/2018-09---ipm/roadster-gt/maz13777_mx-5_soft-top_2.0l_roadstergt_soulredcrystal_front_980x520_rgb.png"}

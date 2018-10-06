@@ -89,8 +89,32 @@ const CarOfWeek = new graphql.GraphQLObjectType({
       description: 'Car Review',
     },
   }),
-
 });
+
+const CarMakes = new graphql.GraphQLObjectType({
+  name: 'carmakes',
+  description: 'Car Makes',
+  fields: () => ({
+    id: {
+      type: graphql.GraphQLID,
+      resolve(makes) {
+        return makes._id; // eslint-disable-line no-underscore-dangle
+      },
+    },
+    makeId: {
+      type: graphql.GraphQLID,
+      description: 'Make Id',
+      resolve(makes) {
+        return makes.id;
+      }
+    },
+    name: {
+      type: graphql.GraphQLString,
+      description: 'Car Make Name',
+    },
+  }),
+});
+
 // const CarOfWeek = new graphql.GraphQLObjectType({
 //   name: 'carofweek',
 //   description: 'Car Of Week',
@@ -139,6 +163,13 @@ const Query = new graphql.GraphQLObjectType({
       description: 'Car of the week',
       resolve() {
         return CarService.findCarOfWeek().then(response => response);
+      },
+    },
+    makes: {
+      type: new graphql.GraphQLList(CarMakes),
+      description: 'Car of the week',
+      resolve() {
+        return CarService.findCarMakes().then(response => response);
       },
     },
     car: {

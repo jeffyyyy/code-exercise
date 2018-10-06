@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "build": "webpack --config webpack.config.js --progress --colors",
     "test": "jest",
-    "eslint:fix": "eslint --fix server"
+    "eslint:fix": "eslint --fix server client"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-select": "^2.1.0",
     "reactstrap": "^6.5.0",
     "redux": "^3.7.1",
     "redux-promise-middleware": "^4.2.1",

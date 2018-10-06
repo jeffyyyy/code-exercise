@@ -5,9 +5,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import CarReducer from '../features/Car/reducers';
 
-// Dev only imports
-
-
 const configureStore = (client) => {
   const loggerMiddlware = createLogger({
     collapsed: () => true
@@ -15,7 +12,7 @@ const configureStore = (client) => {
 
   const middleware = [
     loggerMiddlware,
-    immutableStateInvariant,
+    immutableStateInvariant(),
     client.middleware(),
     promiseMiddleware(),
     thunk

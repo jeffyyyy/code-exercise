@@ -5,8 +5,8 @@ import * as consts from './constants';
 const client = new ApolloClient();
 
 const defaultQueryParameters = {
-  makeId: 10,
-  modelId: 100,
+  // makeId: 10,
+  // modelId: 100,
 };
 
 export const CAR_OF_WEEK_QUERY = gql`query {
@@ -14,6 +14,14 @@ export const CAR_OF_WEEK_QUERY = gql`query {
     id
     modelId
     review
+  }
+}`;
+
+export const CAR_MAKES_QUERY = gql`query {
+  makes {
+    id
+    makeId
+    name
   }
 }`;
 
@@ -67,3 +75,32 @@ export function requestCarOfWeekData(query = defaultQueryParameters) {
       });
   };
 }
+
+export const receiveCarMakesDataError = (request, response) => ({
+  type: consts.IS_ERROR,
+  request,
+  response,
+});
+
+export const requestCarMakesData = () => dispatch => dispatch({
+  type: consts.CAR_MAKES_LOAD,
+  payload: client.query({
+    query: CAR_MAKES_QUERY,
+  })
+}).catch(() => dispatch(receiveCarMakesDataError(null, 'Something went wrong')));
+
+export const receiveCarDataByMakesError = (request, response) => ({
+  type: consts.IS_ERROR,
+  request,
+  response,
+});
+
+export const requestCarDataByMakes = makeId => dispatch => dispatch({
+  type: consts.CAR_LIST_BY_MAKES_LOAD,
+  payload: client.query({
+    query: CAR_QUERY,
+    variables: {
+      makeId,
+    },
+  })
+}).catch(() => dispatch(receiveCarDataByMakesError(null, 'Something went wrong')));

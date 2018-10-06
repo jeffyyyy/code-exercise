@@ -19,6 +19,15 @@ const car = {
         });
     });
   },
+  findCarMakes() {
+    return new Promise((resolve, reject) => {
+      db.makes.find()
+        .exec((err, docs) => {
+          if (err) reject(err);
+          return resolve(docs);
+        });
+    });
+  },
 };
 
 module.exports = car;
