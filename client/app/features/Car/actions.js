@@ -35,6 +35,14 @@ export const CAR_QUERY = gql`query (
   }
 `;
 
+export function receiveCarOfWeekDataError(request, response) {
+  return {
+    type: consts.IS_ERROR,
+    request,
+    response,
+  };
+}
+
 export function requestCarOfWeekData(query = defaultQueryParameters) {
   return (dispatch) => {
     dispatch({
@@ -43,27 +51,19 @@ export function requestCarOfWeekData(query = defaultQueryParameters) {
         query: CAR_OF_WEEK_QUERY,
       })
     })
-    .then(response => dispatch(
-      {
-        type: consts.CAR_LOAD,
-        payload: client.query({
-          query: CAR_QUERY,
-          variables: {
-            modelId: response.value.data.carofweek.modelId,
-          },
+      .then(response => dispatch(
+        {
+          type: consts.CAR_LOAD,
+          payload: client.query({
+            query: CAR_QUERY,
+            variables: {
+              modelId: response.value.data.carofweek.modelId,
+            },
+          })
         })
-      })
-    )
-    .catch(() => {
-      dispatch(receiveCarOfWeekDataError(query, 'Something went wrong'));
-    });
-  };
-}
-
-export function receiveCarOfWeekDataError(request, response) {
-  return {
-    type: consts.IS_ERROR,
-    request,
-    response,
+      )
+      .catch(() => {
+        dispatch(receiveCarOfWeekDataError(query, 'Something went wrong'));
+      });
   };
 }

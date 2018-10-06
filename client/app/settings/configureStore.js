@@ -1,18 +1,16 @@
 import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import immutableStateInvariant from 'redux-immutable-state-invariant';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import CarReducer from '../features/Car/reducers';
 
 // Dev only imports
-import { createLogger } from 'redux-logger';
-import immutableStateInvariant from 'redux-immutable-state-invariant'; // eslint-disable-line
 
-const configureStore = client => {
 
+const configureStore = (client) => {
   const loggerMiddlware = createLogger({
-    collapsed: () => {
-      return true
-    }
+    collapsed: () => true
   });
 
   const middleware = [

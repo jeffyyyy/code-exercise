@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PeopleForm from './PeopleForm';
 import { requestPeopleListData } from '../actions/actions';
-import '../style/style.scss';
 
 class PeopleContainer extends React.Component {
   constructor(props) {

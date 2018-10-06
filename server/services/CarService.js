@@ -13,9 +13,9 @@ const car = {
   findCarOfWeek() {
     return new Promise((resolve, reject) => {
       db.carofweek.findOne()
-        .exec((err, car) => {
+        .exec((err, doc) => {
           if (err) reject(err);
-          return resolve(car);
+          return resolve(doc);
         });
     });
   },
