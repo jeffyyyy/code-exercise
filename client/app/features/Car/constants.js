@@ -1,0 +1,5 @@
+export const IS_ERROR = 'IS_ERROR';
+export const CAR_OF_WEEK_LOAD = 'CAR_OF_WEEK_LOAD';
+export const CAR_OF_WEEK_LOAD_FULFILLED = 'CAR_OF_WEEK_LOAD_FULFILLED';
+export const CAR_LOAD = 'CAR_LOAD';
+export const CAR_LOAD_FULFILLED = 'CAR_LOAD_FULFILLED';

@@ -7,7 +7,7 @@ const schema = require('../graphql/schemas/people/schema');
 app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 
 // Index page
-app.get('/', peopleController.index);
+// app.get('/', peopleController.index);
 
 // RESTFUL API
 app.post('/api/v1/people', peopleController.getPeopleData);

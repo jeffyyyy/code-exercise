@@ -17,7 +17,7 @@ module.exports = {
         ],
         "comma-dangle": "off",
 
-        // TEMPORARIY SET TO WARNING UNTIL WE CAN FIX ALL THE ERRORS
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "arrow-body-style": 1,
         "object-shorthand": 1,
         "prefer-const": 1,

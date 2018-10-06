@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: './client/app/store.js',
+  entry: './client/app/index.js',
   output: {
     path: __dirname + '/public/',
     filename: 'js/bundle.js'
@@ -26,7 +26,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015', 'stage-2']
         }
       },
       {
