@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
+import { formatDollar } from '../../util/helper';
 
 const ListLabel = styled.p.attrs({
   className: 'font-weight-bold text-right mr-3 mb-1',
@@ -25,7 +26,7 @@ class CarDetailList extends React.Component {
         </div>
         <div className='d-flex'>
           <ListLabel>Price:</ListLabel>
-          <ListValue>${price}</ListValue>
+          <ListValue>{formatDollar(price)}</ListValue>
         </div>
         {review &&
           <div className='d-flex'>
