@@ -5,7 +5,6 @@ const initialState = {
   makes: [], // car makes data
   models: [], // list of cars models under specific makes
   detail: {}, // car details for specific make and model,
-  error: '',
 };
 
 export default function CarReducer(state = initialState, action) {
@@ -33,9 +32,6 @@ export default function CarReducer(state = initialState, action) {
       break;
     case consts.CAR_DETAIL_LOAD_FULFILLED:
       cloneObj.detail = action.payload.data.car[0];
-      break;
-    case consts.IS_ERROR:
-      // todo - error handling
       break;
     default:
       break;

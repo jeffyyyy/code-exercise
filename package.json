@@ -1,7 +1,7 @@
 {
   "name": "exercise",
   "version": "1.0.0",
-  "description": "Coding Exercise",
+  "description": "Car catalog coding exercise",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
@@ -24,10 +24,7 @@
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "graphql": "^0.10.3",
-    "handlebars": "^4.0.10",
-    "hbs": "^4.0.1",
     "history": "^4.7.2",
-    "lodash": "^4.17.4",
     "nedb": "^1.8.0",
     "prop-types": "^15.5.10",
     "ramda": "^0.25.0",
@@ -60,7 +57,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "extract-text-webpack-plugin": "^2.1.2",
+    "extract-text-webpack-plugin": "^3.0.2",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "karma": "^1.7.0",

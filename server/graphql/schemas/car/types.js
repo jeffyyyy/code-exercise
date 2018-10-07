@@ -1,35 +1,6 @@
 const graphql = require('graphql');
 const CarService = require('../../../services/CarService');
 
-// const Makes = new graphql.GraphQLObjectType({
-//   name: 'makes',
-//   description: 'Car Makes',
-//   fields: () => ({
-//     id: {
-//       type: graphql.GraphQLID,
-//       description: 'Unique ID for person. Assigned by DB',
-//       resolve(car) {
-//         return car._id; // eslint-disable-line no-underscore-dangle
-//       },
-//     },
-//     makeId: {
-//       type: graphql.GraphQLID,
-//       description: 'Car Make Id',
-//       resolve(car) {
-//         return car.id;
-//       }
-//     },
-//     name: {
-//       type: graphql.GraphQLString,
-//       description: 'Name',
-//     },
-//     models: {
-//       type: graphql.GraphQLList,
-//       description: 'Model list under current car make',
-//     }
-//   }),
-// });
-
 const Car = new graphql.GraphQLObjectType({
   name: 'car',
   description: 'A Car',
@@ -115,45 +86,6 @@ const CarMakes = new graphql.GraphQLObjectType({
   }),
 });
 
-// const CarOfWeek = new graphql.GraphQLObjectType({
-//   name: 'carofweek',
-//   description: 'Car Of Week',
-//   fields: () => ({
-//     modelId: {
-//       type: graphql.GraphQLID,
-//       description: 'Model ID for car',
-//       // resolve(car) {
-//       //   return car.id; // eslint-disable-line no-underscore-dangle
-//       // },
-//     },
-//     review: {
-//       type: graphql.GraphQLString,
-//       description: 'Name',
-//     },
-//     resolve(obj, args, context, info) {
-//       console.log(obj, args, context, info);
-//     },
-//   }),
-// });
-
-// const Makes = new graphql.GraphQLObjectType({
-//   name: 'makes',
-//   description: 'Car makes',
-//   fields: () => ({
-//     id: {
-//       type: graphql.GraphQLID,
-//       description: 'Unique ID for car. Assigned by DB',
-//       // resolve(car) {
-//       //   return car.id; // eslint-disable-line no-underscore-dangle
-//       // },
-//     },
-//     name: {
-//       type: graphql.GraphQLString,
-//       description: 'Name',
-//     },
-//   }),
-// });
-
 const Query = new graphql.GraphQLObjectType({
   name: 'Query',
   description: 'The root query',
@@ -203,6 +135,8 @@ const Query = new graphql.GraphQLObjectType({
 });
 
 module.exports = {
-  // Car,
   Query,
+  Car,
+  CarMakes,
+  CarOfWeek,
 };

@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
+  devtool: 'source-map',
   entry: './client/app/index.js',
   output: {
     path: __dirname + '/public/',
@@ -11,7 +12,9 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
-    new ExtractTextPlugin({filename: 'css/main.css'})
+    new ExtractTextPlugin({filename: 'css/main.css'}),
+    new webpack.optimize.UglifyJsPlugin(), //minify everything
+    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
   ],
   module: {
     rules: [

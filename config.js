@@ -12,7 +12,7 @@ const config = {
   production: {
     port: 3900,
     logs: {
-      filename: 'refactor-access.log',
+      filename: 'qantas-access.log',
       rotate: '5d',
       logDirectory: path.join(__dirname, 'log')
     }
