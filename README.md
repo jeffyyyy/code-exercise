@@ -1,7 +1,7 @@
 # Car Catalog
 Coding exercise - Complete version by Jeff
 
-To run the app:
+Given Node v6+ or v8+ was installed, please run follow command to start the app:
 ```
 npm install
 npm start
