@@ -25,13 +25,15 @@ class CarDetailList extends React.Component {
         </div>
         <div className='d-flex'>
           <ListLabel>Price:</ListLabel>
-          <ListValue>{price}</ListValue>
+          <ListValue>${price}</ListValue>
         </div>
-        <div className='d-flex'>
-          <ListLabel>Review:</ListLabel>
-          <ListValue>{review}</ListValue>
-        </div>
-        <img src={imageUrl} alt="Car of Week" style={{ width: '100%' }} />
+        {review &&
+          <div className='d-flex'>
+            <ListLabel>Review:</ListLabel>
+            <ListValue>{review}</ListValue>
+          </div>
+        }
+        <img src={imageUrl} alt="Car of Week" className='w-100 mt-3' />
       </React.Fragment>
     );
   }

@@ -44,10 +44,11 @@ class Search extends React.Component {
     const { makes, models } = this.props;
     return (
       <div>
-        <h1>Search</h1>
-        <Row>
+        <h1 className='mb-4'>Search for your favourite Car!</h1>
+        <Row className='mt-4'>
           <Col sm={12} md={6}>
             <Select
+              className='mt-3'
               value={selectedCarMake}
               onChange={this.handleCarMakesChange}
               options={makes}
@@ -57,6 +58,7 @@ class Search extends React.Component {
           </Col>
           <Col sm={12} md={6}>
             <Select
+              className='mt-3'
               value={selectedCarModel}
               onChange={this.handleCarModelsChange}
               options={models}
@@ -64,7 +66,7 @@ class Search extends React.Component {
               getOptionValue={option => option.id}
             />
           </Col>
-          <Col sm={12} md={12} className='mt-5 text-center'>
+          <Col sm={12} md={12} className='mt-5 mb-5 text-center'>
             <SearchButton
               color="primary"
               onClick={this.searchCar}

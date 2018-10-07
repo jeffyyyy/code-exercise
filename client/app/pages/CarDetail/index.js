@@ -15,8 +15,8 @@ class CarDetail extends React.Component {
       return null;
     }
     return (
-      <div className='mt-3'>
-        <h1 className='text-center'>Car Details</h1>
+      <div className='mb-5'>
+        <h1 className='text-center mb-4'>Car Details</h1>
         <CarDetailList detail={detail} />
       </div>
     );

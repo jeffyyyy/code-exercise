@@ -21,6 +21,7 @@ const configureStore = (client) => {
   const store = createStore(
     combineReducers({
       car: CarReducer,
+      apollo: client.reducer(),
     }),
     compose(
       applyMiddleware(...middleware),
