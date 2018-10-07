@@ -2,31 +2,78 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { requestCarMakesData, requestCarDataByMakes } from '../../features/Car/actions';
+import { Row, Col, Button } from 'reactstrap';
+import styled from 'styled-components';
+import { requestMakesData, requestModelData } from '../../features/Car/actions';
+import { navigateToPage } from '../../util/helper';
 
+const SearchButton = styled(props => <Button {...props} />).attrs({
+  className: 'pl-5 pr-5'
+})`
+  border-radius: 32px;
+`;
 
 class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCarMake: '',
+      selectedCarModel: '',
+    };
+  }
   componentDidMount() {
-    this.props.dispatch(requestCarMakesData());
-    this.props.dispatch(requestCarDataByMakes(10));
+    this.props.dispatch(requestMakesData());
   }
-  componentDidUpdate(prevProps) {
-    
-  }
+  handleCarMakesChange = (selectedOption) => {
+    if (selectedOption !== this.state.selectedCarMake) {
+      this.setState({ selectedCarMake: selectedOption, selectedCarModel: '' });
+      this.props.dispatch(requestModelData(selectedOption.makeId));
+    }
+  };
+  handleCarModelsChange = (selectedOption) => {
+    if (selectedOption !== this.state.selectedCarModel) {
+      this.setState({ selectedCarModel: selectedOption });
+    }
+  };
+  searchCar = () => {
+    const id = this.state.selectedCarModel.id;
+    navigateToPage(`/make/model/${id}`)();
+  };
   render() {
+    const { selectedCarMake, selectedCarModel } = this.state;
+    const { makes, models } = this.props;
     return (
       <div>
         <h1>Search</h1>
-        <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={options}
-        />
-        <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={options}
-        />
+        <Row>
+          <Col sm={12} md={6}>
+            <Select
+              value={selectedCarMake}
+              onChange={this.handleCarMakesChange}
+              options={makes}
+              getOptionLabel={option => option.name}
+              getOptionValue={option => option.id}
+            />
+          </Col>
+          <Col sm={12} md={6}>
+            <Select
+              value={selectedCarModel}
+              onChange={this.handleCarModelsChange}
+              options={models}
+              getOptionLabel={option => option.name}
+              getOptionValue={option => option.id}
+            />
+          </Col>
+          <Col sm={12} md={12} className='mt-5 text-center'>
+            <SearchButton
+              color="primary"
+              onClick={this.searchCar}
+              disabled={!selectedCarMake || !selectedCarModel}
+            >
+              Search
+            </SearchButton>
+          </Col>
+        </Row>
       </div>
     );
   }
@@ -34,13 +81,18 @@ class Search extends React.Component {
 
 const mapStateToProps = state => ({
   makes: state.car.makes,
-  list: state.car.list,
-  // peopleList: state.people.peopleList,
-  // error: state.people.error
+  models: state.car.models,
 });
+
+Search.defaultProps = {
+  makes: [],
+  models: [],
+};
 
 Search.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  makes: PropTypes.array,
+  models: PropTypes.array,
 };
 
 export default connect(mapStateToProps)(Search);

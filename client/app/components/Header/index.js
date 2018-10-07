@@ -5,27 +5,30 @@ import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } f
 class Header extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
     };
   }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
-
+  };
+  navigateToPage = pathname => (e) => {
+    if (this.state.isOpen) {
+      this.toggle();
+    }
+    this.props.navigateToPage(pathname)(e);
+  };
   render() {
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/" onClick={this.props.navigateToPage('/')}>Dashboard</NavbarBrand>
+        <NavbarBrand href="/" onClick={this.navigateToPage('/')}>Dashboard</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/search" onClick={this.props.navigateToPage('/search')}>Search</NavLink>
+              <NavLink href="/search" onClick={this.navigateToPage('/search')}>Search</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

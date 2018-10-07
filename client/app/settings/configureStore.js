@@ -11,17 +11,16 @@ const configureStore = (client) => {
   });
 
   const middleware = [
-    loggerMiddlware,
-    immutableStateInvariant(),
     client.middleware(),
     promiseMiddleware(),
-    thunk
+    thunk,
+    immutableStateInvariant(),
+    loggerMiddlware,
   ];
 
   const store = createStore(
     combineReducers({
       car: CarReducer,
-      apollo: client.reducer()
     }),
     compose(
       applyMiddleware(...middleware),

@@ -4,10 +4,7 @@ import * as consts from './constants';
 // By default, this client will send queries to the '/graphql' endpoint on the same host
 const client = new ApolloClient();
 
-const defaultQueryParameters = {
-  // makeId: 10,
-  // modelId: 100,
-};
+const defaultQueryParameters = {};
 
 export const CAR_OF_WEEK_QUERY = gql`query {
   carofweek {
@@ -54,14 +51,14 @@ export function receiveCarOfWeekDataError(request, response) {
 export function requestCarOfWeekData(query = defaultQueryParameters) {
   return (dispatch) => {
     dispatch({
-      type: consts.CAR_OF_WEEK_LOAD,
+      type: consts.CAR_OF_WEEK_MODEL_LOAD,
       payload: client.query({
         query: CAR_OF_WEEK_QUERY,
       })
     })
       .then(response => dispatch(
         {
-          type: consts.CAR_LOAD,
+          type: consts.CAR_OF_WEEK_DETAIL_LOAD,
           payload: client.query({
             query: CAR_QUERY,
             variables: {
@@ -76,31 +73,45 @@ export function requestCarOfWeekData(query = defaultQueryParameters) {
   };
 }
 
-export const receiveCarMakesDataError = (request, response) => ({
+export const receiveMakesDataError = (request, response) => ({
   type: consts.IS_ERROR,
   request,
   response,
 });
 
-export const requestCarMakesData = () => dispatch => dispatch({
+export const requestMakesData = () => dispatch => dispatch({
   type: consts.CAR_MAKES_LOAD,
   payload: client.query({
     query: CAR_MAKES_QUERY,
   })
-}).catch(() => dispatch(receiveCarMakesDataError(null, 'Something went wrong')));
+}).catch(() => dispatch(receiveMakesDataError(null, 'Something went wrong')));
 
-export const receiveCarDataByMakesError = (request, response) => ({
+export const receiveModelDataError = (request, response) => ({
   type: consts.IS_ERROR,
   request,
   response,
 });
 
-export const requestCarDataByMakes = makeId => dispatch => dispatch({
-  type: consts.CAR_LIST_BY_MAKES_LOAD,
+export const requestModelData = makeId => dispatch => dispatch({
+  type: consts.CAR_MODELS_LOAD,
   payload: client.query({
     query: CAR_QUERY,
     variables: {
       makeId,
     },
   })
-}).catch(() => dispatch(receiveCarDataByMakesError(null, 'Something went wrong')));
+}).catch(() => dispatch(receiveModelDataError(null, 'Something went wrong')));
+
+export const receiveCarDetailDataError = (request, response) => ({
+  type: consts.IS_ERROR,
+  request,
+  response,
+});
+
+export const requestCarDetailData = (query = defaultQueryParameters) => dispatch => dispatch({
+  type: consts.CAR_DETAIL_LOAD,
+  payload: client.query({
+    query: CAR_QUERY,
+    variables: query,
+  })
+}).catch(() => dispatch(receiveCarDetailDataError(null, 'Something went wrong')));
